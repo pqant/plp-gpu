@@ -1,0 +1,5 @@
+# build artifacts + selftest outputs (regenerable)
+plp_gpu
+plp_gpu_cuda
+selftest_cpp.txt
+selftest_ref.txt

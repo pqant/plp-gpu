@@ -1,0 +1,253 @@
+{
+  "source_repo": "https://github.com/kcliu2/CLP-Datasets",
+  "source_commit": "df203baa2a7d1e34f0c6db036cd162c94928aad1",
+  "source_files": "BR/original/BR{n}.txt (n = class number)",
+  "format": "OR-Library thpack format: line0=P; per instance: [p seed], L W H (cm), n, then n lines \"i l lf w wf h hf qty\" (lf/wf/hf = may stand on that axis, 0/1)",
+  "units": "cm",
+  "selection": "instance #50 (1-based, file middle) of each class BR1-BR15; deterministic",
+  "approved_by": "Eralp Erat",
+  "approved_date": "2026-10-03",
+  "thpack_note": "thpack excluded: OR-Library states the first 7 thpack files are identical to BR1-BR7 (same family); thpack9 is a different problem type (multi-container). Single source = kcliu2/CLP-Datasets.",
+  "instances": [
+    {
+      "name": "BR1",
+      "class": 1,
+      "instance_index": 50,
+      "file": "instances/BR1_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 3,
+      "total_qty": 168,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29921040,
+      "fill_ratio": 0.994397
+    },
+    {
+      "name": "BR2",
+      "class": 2,
+      "instance_index": 50,
+      "file": "instances/BR2_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 5,
+      "total_qty": 155,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30021520,
+      "fill_ratio": 0.997737
+    },
+    {
+      "name": "BR3",
+      "class": 3,
+      "instance_index": 50,
+      "file": "instances/BR3_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 8,
+      "total_qty": 136,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30053276,
+      "fill_ratio": 0.998792
+    },
+    {
+      "name": "BR4",
+      "class": 4,
+      "instance_index": 50,
+      "file": "instances/BR4_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 10,
+      "total_qty": 167,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29888400,
+      "fill_ratio": 0.993313
+    },
+    {
+      "name": "BR5",
+      "class": 5,
+      "instance_index": 50,
+      "file": "instances/BR5_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 12,
+      "total_qty": 172,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30034278,
+      "fill_ratio": 0.998161
+    },
+    {
+      "name": "BR6",
+      "class": 6,
+      "instance_index": 50,
+      "file": "instances/BR6_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 15,
+      "total_qty": 145,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30083711,
+      "fill_ratio": 0.999804
+    },
+    {
+      "name": "BR7",
+      "class": 7,
+      "instance_index": 50,
+      "file": "instances/BR7_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 20,
+      "total_qty": 149,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29911579,
+      "fill_ratio": 0.994083
+    },
+    {
+      "name": "BR8",
+      "class": 8,
+      "instance_index": 50,
+      "file": "instances/BR8_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 30,
+      "total_qty": 137,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30033043,
+      "fill_ratio": 0.99812
+    },
+    {
+      "name": "BR9",
+      "class": 9,
+      "instance_index": 50,
+      "file": "instances/BR9_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 40,
+      "total_qty": 144,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30079822,
+      "fill_ratio": 0.999674
+    },
+    {
+      "name": "BR10",
+      "class": 10,
+      "instance_index": 50,
+      "file": "instances/BR10_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 50,
+      "total_qty": 138,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29767512,
+      "fill_ratio": 0.989295
+    },
+    {
+      "name": "BR11",
+      "class": 11,
+      "instance_index": 50,
+      "file": "instances/BR11_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 60,
+      "total_qty": 138,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29687674,
+      "fill_ratio": 0.986642
+    },
+    {
+      "name": "BR12",
+      "class": 12,
+      "instance_index": 50,
+      "file": "instances/BR12_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 70,
+      "total_qty": 150,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29947266,
+      "fill_ratio": 0.995269
+    },
+    {
+      "name": "BR13",
+      "class": 13,
+      "instance_index": 50,
+      "file": "instances/BR13_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 80,
+      "total_qty": 148,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29781018,
+      "fill_ratio": 0.989744
+    },
+    {
+      "name": "BR14",
+      "class": 14,
+      "instance_index": 50,
+      "file": "instances/BR14_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 90,
+      "total_qty": 145,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30016004,
+      "fill_ratio": 0.997553
+    },
+    {
+      "name": "BR15",
+      "class": 15,
+      "instance_index": 50,
+      "file": "instances/BR15_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 100,
+      "total_qty": 141,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29811663,
+      "fill_ratio": 0.990762
+    }
+  ]
+}
