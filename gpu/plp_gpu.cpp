@@ -1,4 +1,4 @@
-// plp_gpu.cpp — host (g++) build of the 3D-PLP decoder.
+// plp_gpu.cpp — host (g++) build of the 3D-PLP decoder (gate 3.3 stage A).
 //
 // Validates the C++ port of ../plp/solver.py bit-for-bit BEFORE the CUDA
 // backend exists: parity target is the Python CPU baseline
@@ -69,7 +69,7 @@ void usage(const char* prog) {
     std::fprintf(stderr,
                  "usage: %s <instance> [--seed N] [--time S] [--eps F] "
                  "[--theta F | --no-theta]\n"
-                 "                 [--order volume|input] [--first-fit] "
+                 "                 [--order volume|input] [--first-fit] [--mu F] "
                  "[--single-pass] [--json]\n"
                  "       %s --selftest\n",
                  prog, prog);
@@ -83,6 +83,7 @@ int main(int argc, char** argv) {
     int seed = 0;
     double time_s = 300.0, eps = EPS_QUALITY, theta = THETA;
     bool no_theta = false, first_fit = false, single_pass = false, as_json = false;
+    if (const char* e = std::getenv("PLP_MU")) MU = std::strtod(e, nullptr);
 
     for (int i = 1; i < argc; i++) {
         std::string a = argv[i];
@@ -97,6 +98,7 @@ int main(int argc, char** argv) {
         else if (a == "--seed") seed = std::atoi(next(a.c_str()).c_str());
         else if (a == "--time") time_s = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--eps") eps = std::strtod(next(a.c_str()).c_str(), nullptr);
+        else if (a == "--mu") MU = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--theta") theta = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--no-theta") no_theta = true;
         else if (a == "--order") { order = next(a.c_str()); }

@@ -1,4 +1,4 @@
-# 3D-PLP decoder builds.
+# Gate 3.3 — 3D-PLP decoder builds.
 #
 #   make host   : g++ build  -> plp_gpu      (parity-checked on macOS)
 #   make cuda   : nvcc build -> plp_gpu_cuda (Spark GB10, sm_121)

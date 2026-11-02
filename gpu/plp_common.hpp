@@ -1,8 +1,8 @@
-// plp_common.hpp — 3D-PLP decoder core.
+// plp_common.hpp — 3D-PLP decoder core (gate 3.3).
 //
 // Single source of truth shared by the host build (plp_gpu.cpp) and the CUDA
 // build (plp_gpu.cu). Bit-compatible with the Python CPU baseline
-// (../plp/solver.py): with eps = 0 and one pass, placements,
+// (../plp/solver.py, gate 3.2): with eps = 0 and one pass, placements,
 // stability score (bit-equal double), and every deterministic JSON field must
 // equal `python -m plp.solver --single-pass --eps 0 --no-theta --json`.
 //
@@ -35,7 +35,9 @@
 namespace plp {
 
 // Approved parameters (spec D3/D4'/D6/D7/D8) — identical to solver.py.
-constexpr double MU = 0.2;
+// MU is runtime-mutable (--mu / PLP_MU) for the binding-regime campaign only;
+// default 0.2 keeps every locked Gate 3.4 code path bit-identical.
+inline double MU = 0.2;
 constexpr double A_LAT_G = 0.3;   // a_lat = 0.3 g; g cancels in FSR
 constexpr double TAU = 0.5;
 constexpr double THETA = 0.9;
@@ -320,7 +322,7 @@ inline bool check_feasible_one(int x, int y, int z, const Pt& o,
 
 // Feasibility backend: fills bits[ci * ors.size() + oi]. Host and CUDA builds
 // provide different implementations; results must be bit-identical (that IS
-// the parity check, end-to-end).
+// the gate 3.3 parity check, end-to-end).
 struct FeasibilityBackend {
     virtual ~FeasibilityBackend() = default;
     virtual std::vector<uint8_t> check_all(const std::vector<Pt>& cand,

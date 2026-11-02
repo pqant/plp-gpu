@@ -1,4 +1,4 @@
-// plp_gpu.cu — CUDA build of the 3D-PLP decoder (developed on NVIDIA GB10, sm_121).
+// plp_gpu.cu — CUDA build of the 3D-PLP decoder (gate 3.3, Spark GB10 sm_121).
 //
 // Same semantics as plp_gpu.cpp; the ONLY difference is the feasibility
 // backend: CudaBackend parallelizes check_feasible_one on the GPU (one thread
@@ -1121,7 +1121,7 @@ __global__ void decode_device_kernel(DevRow* __restrict__ drows,
 constexpr int DEV_FSR_CAP = 256;
 
 __global__ void stability_kernel(char* dslots, int n_items, int H,
-                                 size_t slot_stride) {
+                                 size_t slot_stride, double mu) {
     // Turn 12: stride from host (slot_bytes(), 8-byte padded) — see
     // decode_device_kernel (odd n_items -> unpadded stride 4 mod 8 ->
     // misaligned `double score` at offset 8 for row>0).
@@ -1207,8 +1207,9 @@ __global__ void stability_kernel(char* dslots, int n_items, int H,
     }
 
     // fsr + count (host: fsr[i] = (MU/A_LAT_G) * load[i] / m[i]; f >= 1.0).
+    // mu: runtime kernel param (binding-regime campaign); mirrors plp::MU.
     if (have) {
-        double fsr = (plp::MU / plp::A_LAT_G) * s_load[tid] / s_m[tid];
+        double fsr = (mu / plp::A_LAT_G) * s_load[tid] / s_m[tid];
         s_flag[tid] = (fsr >= 1.0) ? 1 : 0;
     }
     __syncthreads();
@@ -1341,7 +1342,8 @@ struct CudaDeviceBackend {
             d_ors_off, d_ors_n,
             d_ors, n_items, L, W, H, eps, first_fit);
         check("dev kernel", cudaGetLastError());
-        stability_kernel<<<K, DEV_BLOCK>>>(d_slots, n_items, H, slot_stride);
+        stability_kernel<<<K, DEV_BLOCK>>>(d_slots, n_items, H, slot_stride,
+                                           plp::MU);
         check("dev stability", cudaGetLastError());
         check("dev sync", cudaDeviceSynchronize());
     }
@@ -1563,7 +1565,7 @@ void usage(const char* prog) {
                  "usage: %s <instance> [--seed N] [--time S] [--eps F] "
                  "[--theta F | --no-theta]\n"
                  "                 [--order volume|input] [--first-fit] "
-                 "[--single-pass] [--batch K] [--device K] [--json]\n"
+                 "[--single-pass] [--batch K] [--device K] [--mu F] [--json]\n"
                  "       %s --selftest | --rngdump N\n",
                  prog, prog);
 }
@@ -1578,6 +1580,7 @@ int main(int argc, char** argv) {
     bool no_theta = false, first_fit = false, single_pass = false, as_json = false;
     int batch = 0;   // 2a: K independent rows (row k = PyRng(seed + k)); 0 = off
     int device = 0;  // 2b: K device-driven rows (state on device); 0 = off
+    if (const char* e = std::getenv("PLP_MU")) MU = std::strtod(e, nullptr);
 
     for (int i = 1; i < argc; i++) {
         std::string a = argv[i];
@@ -1596,6 +1599,7 @@ int main(int argc, char** argv) {
         else if (a == "--seed") seed = std::atoi(next(a.c_str()).c_str());
         else if (a == "--time") time_s = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--eps") eps = std::strtod(next(a.c_str()).c_str(), nullptr);
+        else if (a == "--mu") MU = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--theta") theta = std::strtod(next(a.c_str()).c_str(), nullptr);
         else if (a == "--no-theta") no_theta = true;
         else if (a == "--order") { order = next(a.c_str()); }
