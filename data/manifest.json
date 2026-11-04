@@ -248,6 +248,71 @@
       "container_volume_cm3": 30089620,
       "item_volume_cm3": 29811663,
       "fill_ratio": 0.990762
+    },
+    {
+      "name": "BR0_050",
+      "class": 0,
+      "instance_index": 50,
+      "file": "instances/BR0_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 1,
+      "total_qty": 391,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30028800,
+      "fill_ratio": 0.997979
+    },
+    {
+      "name": "BR16_050",
+      "class": 16,
+      "instance_index": 50,
+      "file": "instances/BR16_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 110,
+      "total_qty": 140,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 29960738,
+      "fill_ratio": 0.995717
+    },
+    {
+      "name": "BR17_050",
+      "class": 17,
+      "instance_index": 50,
+      "file": "instances/BR17_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 120,
+      "total_qty": 136,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30078206,
+      "fill_ratio": 0.999621
+    },
+    {
+      "name": "BR18_050",
+      "class": 18,
+      "instance_index": 50,
+      "file": "instances/BR18_050.txt",
+      "container_cm": [
+        587,
+        233,
+        220
+      ],
+      "n_types": 130,
+      "total_qty": 133,
+      "container_volume_cm3": 30089620,
+      "item_volume_cm3": 30015540,
+      "fill_ratio": 0.997538
     }
-  ]
+  ],
+  "b2_addendum": "B-2 GO (Eralp Bey, cp-147, 2026-11-03): +1 instance ailesi = BR0/BR16/BR17/BR18 (ayni pallet 587x233x220, ayni thpack formati, ayni deterministic #50 secim kurali, ayni pinned commit df203ba). Fetch+extract: data/fetch_br_family_ext.py (strict parser round-trip dogramali). Tip merdiveni 3..30 -> 1..130. Spark kampanyasi (kilitli binary 68c9e46f) + kagit entegrasyonu sonraki faz; ~15 GPU-sa (B0/B3 x 4 sinif x 12 seed)."
 }
